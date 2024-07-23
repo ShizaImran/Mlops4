@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cohere-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: cohere-app
+  template:
+    metadata:
+      labels:
+        app: cohere-app
+    spec:
+      containers:
+      - name: cohere-container
+        image: ayesha9470/cohere-mlops:latest
+        resources:
+          requests:
+            cpu: "500m"
+          limits:
+            cpu: "1000m"
+        ports:
+        - containerPort: 80
+        env:
+        - name: COHERE_API_KEY
+          value: "wJrYsv514DtqnRzZaHxewjnlhKbHiJKu3QUGaJ5M"
